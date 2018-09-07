@@ -135,7 +135,7 @@
 						</button>
 
 						<!-- Logo -->
-						<a class="logo float-left scrollTo" href="#top">
+						<a class="logo float-left scrollTo" href="index_gilles.html">
 							<img src="assets/images/R2.png" alt="" />
 						</a>
 
@@ -156,22 +156,22 @@
 								-->
 								<ul id="topMain" class="nav nav-pills nav-main nav-onepage">
 									<li class="active"><!-- HOME -->
-										<a href="#top">
+										<a href="index_gilles.html#top">
 											HOME
 										</a>
 									</li>
 									<li><!-- SERVICES -->
-										<a href="#services">
+										<a href="index_gilles.html#services">
 											SERVICES
 										</a>
 									</li>
 									<li><!-- PORTFOLIO -->
-										<a href="#portfolio">
+										<a href="index_gilles.html#portfolio">
 											PORTFOLIO
 										</a>
 									</li>
 									<li><!-- NEWS -->
-										<a href="#news">
+										<a href="index_gilles.html#news">
 											NEWS
 										</a>
 									</li>
@@ -235,29 +235,7 @@
 					<h3>Fill all boxes and get your quote <strong></strong></h3>
 
 					
-					<!--
-						MESSAGES
-						
-							How it works?
-							The form data is posted to php/contact.php where the fields are verified!
-							php.contact.php will redirect back here and will add a hash to the end of the URL:
-								#alert_success 		= email sent
-								#alert_failed		= email not sent - internal server error (404 error or SMTP problem)
-								#alert_mandatory	= email not sent - required fields empty
-								Hashes are handled by assets/js/contact.js
-
-							Form data: required to be an array. Example:
-								contact[email][required]  WHERE: [email] = field name, [required] = only if this field is required (PHP will check this)
-								Also, add `required` to input fields if is a mandatory field. 
-								Example: <input required type="email" value="" class="form-control" name="contact[email][required]">
-
-							PLEASE NOTE: IF YOU WANT TO ADD OR REMOVE FIELDS (EXCEPT CAPTCHA), JUST EDIT THE HTML CODE, NO NEED TO EDIT php/contact.php or javascript
-										 ALL FIELDS ARE DETECTED DINAMICALY BY THE PHP
-
-							WARNING! Do not change the `email` and `name`!
-										contact[name][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
-										contact[email][required] 	- should stay as it is because PHP is using it for AddReplyTo (phpmailer)
-					-->
+					
 
 					<!-- Alert Success -->
 					<div id="alert_success" class="alert alert-success mb-30">
@@ -280,13 +258,13 @@
 					</div><!-- /Alert Mandatory -->
 
 
-					<form  enctype="multipart/form-data">
+					<form>
 						<fieldset>
 							<input type="hidden" name="action" value="contact_send" />
 							<div class="row">
 								<div class="col-md-4">
 									<label for="building_type">Which type of building?</label>
-									<select class="form-control pointer" id="building_type">
+									<select class="form-control pointer" id="building_type"onchange="display_relevant_fields(this)">
 										<option value="">--- Select ---</option>
 										<option value="residential">Residential</option>
 										<option value="commercial">Commercial</option>
@@ -300,40 +278,40 @@
 
 						<div class="row">
 
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_apartment">
 									<label for="number of apartments">Number of apartments</label>
 									<input type="text" value="" class="form-control" name="number_apartment" id="number_apartment">
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_floor">
 								<label for="Number of floors">Number of floors</label>
 								<input required type="text" value="" class="form-control" name="number_floor" id="number_floor">
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_floorbasement">
 								<label for="nb of floor of basement">Nb of floors of basement</label>
 								<input required type="text" value="" class="form-control" name="number_floor_basement" id="number_floor_basement">
 							</div>
 							
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_store">
 									<label for="number of stores">Number of stores</label>
 									<input type="text" value="" class="form-control" name="number_store" id="number_store">
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_parking">
 									<label for="number of parkings">Number of parkings</label>
 									<input type="text" value="" class="form-control" name="number_parking" id="number_parking">
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_elevator">
 									<label for="number of elevators">Nb of elevators to plan</label>
 									<input type="text" value="" class="form-control" name="number_elevator" id="number_elevator">
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_office">
 									<label for="number of offices">Number of offices</label>
 									<input type="text" value="" class="form-control" name="number_office" id="number_office">
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_person/floor">
 										<label for="number of persons/floor">Nb of persons/floor max</label>
 										<input type="text" value="" class="form-control" name="number_person_floor" id="number_person_floor">
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" id="box_nb_businesshour">
 									<label for="number of business hour">Nb of business hour</label>
 									<input type="text" value="" class="form-control" name="number_business_hour" id="number_business_hour">
 							</div>
@@ -354,9 +332,9 @@
 							<div class="row">
 								<div class="col-md-12">
 								  <label for= "range_selection"> Range selection </label>
-								  <input type="radio" name="select_gamme" value="standard"> Standard
-								  <input type="radio" name="select_gamme" value="premium"> Premium
-								  <input type="radio" name="select_gamme" value="excellium"> Excellium
+								  <input type="radio" name="select_gamme" value="standard" onchange="quotation()"> Standard 
+								  <input type="radio" name="select_gamme" value="premium" onchange="quotation()"> Premium 
+								  <input type="radio" name="select_gamme" value="excellium" onchange="quotation()"> Excellium 
 								  <br>
 								  <!-- <input type="button" value="Simulate Click" onClick='document.form1.button2.click()'> -->
 								</div>    
@@ -372,9 +350,18 @@
 										
 											<!--<label>$</label>-->
 										</div>
-						</div><div class="col-md-8">
-							<label for="Your cost">Your cost: *</label>
-							<input type="text" value="" class="form-control" name="your_cost" id="your_cost">
+								</div>
+						<div class="col-md-8">
+							
+								<div class="row">
+										<div class="col-md-12">
+      					  	                <label>Your cost : </label>
+											<label id="total_price" name="total_price"></label>	
+																			
+										</div>
+								</div>
+							
+							
 						</div>
 
 
@@ -382,7 +369,7 @@
 
 						<div class="row">
 							<div class="col-md-12">
-								<button type="submit" class="btn btn-primary" onclick="quotation()"><i class="fa fa-check"></i> GET QUOTATION</button>
+								<button class="btn btn-primary" onclick="quotation()"><i class="fa fa-check"></i> GET QUOTATION</button>
 							</div>
 						</div>
 					</form>
@@ -462,7 +449,7 @@
 							<!-- Newsletter Form -->
 							<p>Subscribe to Our Newsletter to get Important News & Offers</p>
 
-							<form class="validate" action="php/newsletter.php" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
+							<form class="validate" action="" method="post" data-success="Subscribed! Thank you!" data-toastr-position="bottom-right">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
 									<input type="email" id="email" name="email" class="form-control required" placeholder="Enter your Email">
