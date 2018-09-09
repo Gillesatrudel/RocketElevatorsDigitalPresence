@@ -61,14 +61,14 @@ function quotation() {
  var projectCost = 0;
 
  var select_gamme = document.querySelector('input[name="select_gamme"]:checked').value;
-   if (select_gamme=="standard") { 
-    projectCost = Math.round(((7565*cageRequise)*1.1)*100)/100;
+   if (select_gamme=="standard") {
+    projectCost = Math.ceil((7565*cageRequise)*1.1);
     }  
    if (select_gamme=="premium") {
-    projectCost = Math.round(((12345*cageRequise)*1.13)*100)/100;  
+    projectCost = Math.ceil((12345*cageRequise)*1.13); 
     }  
    if (select_gamme=="excellium")  {
-    projectCost = Math.ceil(15400*cageRequise)*1.16;
+    projectCost = Math.ceil((15400*cageRequise)*1.16);
     
     
 
